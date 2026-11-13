@@ -3,7 +3,7 @@
 A simple academic CV template.
 Sections are whatever you want them to be.
 Publications can be cited in place from a .bib file, and your own name can be set in bold wherever it appears.
-See `example.typ` for, well, and example how to use this:
+See `example.typ` for, well, an example how to use this:
 
 ## Quickstart
 
@@ -16,10 +16,10 @@ typst init @preview/simple-academic-cv:0.1.0  CV
 or in an existing file:
 
 ```typ
-#import  "@preview/simple-academic-cv:0.1.0": *
+#import "@preview/simple-academic-cv:0.1.0": *
 
 #show: cv.with(
-    name: "HUGH  MANN",
+    name: "HUGH MANN",
     me: "Mann",
     // me: (first: "Hugh", last: "Mann"),   // also accepted
     header-columns: (
@@ -36,7 +36,7 @@ or in an existing file:
 
 #section("Publications")[
     #set enum(reversed: true)
-    +  #cite(<example1>, form: "full")
+    + #cite(<example1>, form: "full")
 ]
 ```
 
@@ -45,27 +45,26 @@ or in an existing file:
 
 | Option | Default | Function |
 | ------ | ------- | -------- |
-| `name` | "" | Your name, goes up top |
-| `me` | `none` | Your last name, or a dict with `last` and `first` entries; Emboldens names matching last name throughout the document  |
-| `header-columns` | () | Any number of content blocks shown beside one another, under your name |
+| `name` | `""` | Your name, goes up top |
+| `me` | `none` | Your last name, or `(first: "First", last: "Last")` in case someone shares your name; emboldens names matching last name throughout the document  |
+| `header-columns` | `()` | Any number of content blocks shown beside one another, under your name |
 | `header-columns-separator` | `none` | Content that gets placed between each of `header-columns` |
 | `paper` | `"a4"` | Paper size |
 | `margin` | `1in` | Paper margins. Takes  whatever arguments `page(margin: ...)` does |
 | `spacing` | `1.0` | Multiplicative vertical whitespace scaling factor |
 | `fonts` | `(:)` | Dictionary with any of: `body`, `bold`, `name`, `heading`. `body` is for text body and defaults to New Computer Modern; `bold` names a separate family for bold text and defaults to `body`; `name` and `heading` are fonts for your name and for headings, and default to `bold`  |
 | `font-sizes` | `(:)` | Dictionary with any of `body`,`name`, `section`, `subsection`. `body` is  for text body and defaults to `11pt`; the others are derived from `body` by default |
-| `link-color` | dark blue | The color of links. Leaving this as `none` will leave them uncolored |
+| `link-color` | dark blue | The color of links. Seeting this to `none` will leave them uncolored |
 | `bib` |  `none` | The bibliography, e.g, `bibliography("example.bib", style: "apa")` |
 | `bib-show` | `false` | Show the bibliography ? Default hidden because the idea is to cite entries in full where they appear |
 
 Everything else is normal, everyday Typst.
-You can put `set` and `show`  rules above the
-
+You can put `set` and `show` rules above the
 `#show:  cv.with(...)` line:
 
 ```typ
 #set par(justify: true)
-#set text(hyphenate: false, lang: "en)
+#set text(hyphenate: false, lang: "en")
 #set page(numbering: "1 / 1")
 #show link: underline
 
@@ -115,7 +114,7 @@ Simple collection of rows:
   ([Referee], [Some Journal]),
   ([Referee], [Some Other Journal]),
   ([Organizer], [Some Conference], [Dates]),
-  ([Person], [At a place], [At a time !),
+  ([Person], [At a place], [At a time !]),
 )
 ```
 
@@ -131,7 +130,7 @@ For showing off your talks and posters. Maybe you gave a talk
   ([Some Meeting, Somewhere], [Date]),
 )
 ```
-or poster at severl places
+or poster at several places
 
 ```typ
 #talk(
@@ -181,8 +180,8 @@ Pick your favorite bibliography style. You can pass whatever bibliography into `
 If a co-author has the same name as you, consider polluting their name with an invisible unicode character like U+2060 in your bibliography file.
 I did not come up with anything smart, sorry.
 
-BibTex exported from journals will work...unless there's math, in which case Typst will fail to properly parse your bibliography.
-Use the `bin/tex2typst` script provided by the Github repo [https://github.com/banana-bred/simple-academic-cv](https://github.com/banana-bred/simple-academic-cv) to convert yours if that's the case if your shell supports it:
+BibTeX exported from journals will work ... unless there's math, in which case Typst will fail to properly parse your bibliography.
+Use the `bin/tex2typst` script provided by the GitHub repo [https://github.com/banana-bred/simple-academic-cv](https://github.com/banana-bred/simple-academic-cv) to convert yours if that's the case and if your shell supports it (needs `perl` and `pandoc`):
 
 ```sh
 ./bin/tex2typst raw.bib > example.bib
